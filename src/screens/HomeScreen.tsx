@@ -16,10 +16,10 @@ export function HomeScreen() {
       />
       <Text style={styles.subtitle}>
         Get the most of out of your play! Starting June 28, 2026. You can earn
-        up to 4% on every bet you place. Tap on Learn More to find out how much you can earn.
+        up to 4% on every bet you place. Tap on Get My Estimate to find out how much you can earn.
       </Text>
       <Link href="/calc" style={styles.link}>
-        Learn More
+        Get My Estimate
       </Link>
     </FadeIn>
   );

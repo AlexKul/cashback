@@ -123,7 +123,7 @@ export function BonusCalculatorScreen() {
             </Text>
             <WeeklyBetInput
               errorText={weeklyBetAmountError}
-              label="Weekly play amount"
+              label="300"
               onChangeText={updateWeeklyBetAmount}
               value={weeklyBetAmount}
             />
@@ -228,6 +228,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 18,
     marginTop: 50,
+    width: "50%",
+    alignSelf: "center",
   },
   disabledButton: {
     opacity: 0.4,

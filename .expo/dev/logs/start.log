@@ -230,3 +230,22 @@
 {"_e":"metro:bundling:started","_t":1782759477978,"id":"6l","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
 {"_e":"metro:bundling:progress","_t":1782759477978,"id":"6l","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1782759478019,"id":"6l","total":1,"ms":41.293667}
+{"_e":"metro:bundling:started","_t":1782760392708,"id":"6s","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782760392708,"id":"6s","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782760392751,"id":"6s","total":1,"ms":43.607583}
+{"_e":"metro:bundling:started","_t":1782760791954,"id":"95","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782760791954,"id":"95","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782760791996,"id":"95","total":1,"ms":41.96275}
+{"_e":"metro:bundling:failed","_t":1782761437039,"id":"69","message":"SyntaxError: /Users/alexkulakevich/Development/cashback/src/components/calculator/BonusProjectionResult.tsx: Unexpected token (240:15)\n\n  238 |\n  239 |\n> 240 |         <FadeIn<Text style={styles.disclaimerLabel}>*Amount is calculated based on your bet type with a maximum amount of $1,000 per month</Text></FadeIn>\n      |                ^\n  241 |\n  242 |     </FadeIn>\n  243 |     </View >","importStack":null,"filename":"src/components/calculator/BonusProjectionResult.tsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:started","_t":1782761453395,"id":"a7","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782761453395,"id":"a7","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782761453443,"id":"a7","total":1,"ms":47.862}
+{"_e":"metro:bundling:started","_t":1782761477224,"id":"ak","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782761477224,"id":"ak","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782761477259,"id":"ak","total":1,"ms":34.379917}
+{"_e":"metro:bundling:started","_t":1782761514474,"id":"ax","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782761514474,"id":"ax","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782761514514,"id":"ax","total":1,"ms":40.154}
+{"_e":"metro:bundling:started","_t":1782761621855,"id":"ay","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782761621855,"id":"ay","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782761621900,"id":"ay","total":1,"ms":45.298917}

@@ -11,20 +11,20 @@ type WeeklyBetInputProps = {
 
 export function WeeklyBetInput({
   errorText,
-  label = "Bet per week",
+  label = "100",
   onChangeText,
   value,
 }: WeeklyBetInputProps) {
   return (
     <View style={styles.field}>
-      <Text style={styles.label}>{label}</Text>
       <View style={styles.inputShell}>
         <Text style={styles.currencyPrefix}>$</Text>
         <TextInput
+          accessibilityLabel={label}
           keyboardType="decimal-pad"
           onChangeText={onChangeText}
-          placeholder="0"
-          placeholderTextColor={colors.foreground}
+          placeholder={label}
+          placeholderTextColor={colors.placeholder}
           style={styles.input}
           value={value}
         />
@@ -38,36 +38,36 @@ const styles = StyleSheet.create({
   field: {
     flex: 1,
     gap: 8,
-  },
-  label: {
-    ...text.default,
-    color: colors.foreground,
-    fontSize: 18,
-    fontWeight: "700",
+    width: "50%",
+    alignSelf: "center",
   },
   inputShell: {
     alignItems: "center",
     borderColor: colors.foreground,
     borderRadius: radii.control,
     borderWidth: 1,
-    flexDirection: "row",
+    justifyContent: "center",
     minHeight: 56,
     paddingHorizontal: 18,
+    position: "relative",
   },
   currencyPrefix: {
     ...text.default,
     color: colors.foreground,
     fontSize: 16,
     fontWeight: "700",
-    marginRight: 4,
+    left: 18,
+    position: "absolute",
   },
   input: {
     ...text.default,
     color: colors.foreground,
-    flex: 1,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "700",
+    paddingHorizontal: 34,
     paddingVertical: 0,
+    textAlign: "center",
+    width: "100%",
   },
   error: {
     ...text.default,

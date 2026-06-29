@@ -32,12 +32,114 @@ const billImages = [
 ] as ImageSourcePropType[];
 
 const billParticleConfigs = [
-  { delay: 0, fromX: 8, imageIndex: 0, rotation: "-24deg", size: 62, toX: -120, toY: -320 },
-  { delay: 70, fromX: 48, imageIndex: 1, rotation: "18deg", size: 58, toX: 120, toY: -280 },
-  { delay: 120, fromX: 86, imageIndex: 0, rotation: "35deg", size: 72, toX: -40, toY: -360 },
-  { delay: 190, fromX: 18, imageIndex: 1, rotation: "-38deg", size: 54, toX: 160, toY: -340 },
-  { delay: 240, fromX: 70, imageIndex: 0, rotation: "28deg", size: 66, toX: -160, toY: -260 },
-  { delay: 310, fromX: 36, imageIndex: 1, rotation: "-14deg", size: 60, toX: 48, toY: -390 },
+  {
+    delay: 0,
+    fromX: 8,
+    imageIndex: 0,
+    rotation: "-54deg",
+    size: 76,
+    toX: -190,
+    toY: -470,
+  },
+  {
+    delay: 25,
+    fromX: 30,
+    imageIndex: 1,
+    rotation: "38deg",
+    size: 64,
+    toX: -105,
+    toY: -390,
+  },
+  {
+    delay: 55,
+    fromX: 52,
+    imageIndex: 0,
+    rotation: "-18deg",
+    size: 82,
+    toX: 18,
+    toY: -520,
+  },
+  {
+    delay: 85,
+    fromX: 76,
+    imageIndex: 1,
+    rotation: "58deg",
+    size: 70,
+    toX: 165,
+    toY: -430,
+  },
+  {
+    delay: 120,
+    fromX: 94,
+    imageIndex: 0,
+    rotation: "82deg",
+    size: 86,
+    toX: 245,
+    toY: -500,
+  },
+  {
+    delay: 155,
+    fromX: 18,
+    imageIndex: 1,
+    rotation: "-92deg",
+    size: 60,
+    toX: -260,
+    toY: -310,
+  },
+  {
+    delay: 185,
+    fromX: 40,
+    imageIndex: 0,
+    rotation: "72deg",
+    size: 72,
+    toX: -145,
+    toY: -575,
+  },
+  {
+    delay: 215,
+    fromX: 62,
+    imageIndex: 1,
+    rotation: "-64deg",
+    size: 66,
+    toX: 105,
+    toY: -585,
+  },
+  {
+    delay: 245,
+    fromX: 84,
+    imageIndex: 0,
+    rotation: "104deg",
+    size: 74,
+    toX: 285,
+    toY: -330,
+  },
+  {
+    delay: 285,
+    fromX: 26,
+    imageIndex: 1,
+    rotation: "-36deg",
+    size: 52,
+    toX: -230,
+    toY: -210,
+  },
+  {
+    delay: 320,
+    fromX: 50,
+    imageIndex: 0,
+    rotation: "28deg",
+    size: 58,
+    toX: -18,
+    toY: -650,
+  },
+  {
+    delay: 360,
+    fromX: 72,
+    imageIndex: 1,
+    rotation: "-118deg",
+    size: 54,
+    toX: 235,
+    toY: -235,
+  },
 ];
 
 export function BonusProjectionResult({
@@ -61,7 +163,7 @@ export function BonusProjectionResult({
     const animations = billParticles.map((bill) =>
       Animated.timing(bill.progress, {
         delay: bill.delay,
-        duration: 1100,
+        duration: 1500,
         toValue: 1,
         useNativeDriver: true,
       }),
@@ -90,7 +192,7 @@ export function BonusProjectionResult({
                 height: bill.size,
                 left: `${bill.fromX}%`,
                 opacity: bill.progress.interpolate({
-                  inputRange: [0, 0.15, 0.8, 1],
+                  inputRange: [0, 0.08, 0.78, 1],
                   outputRange: [0, 1, 1, 0],
                 }),
                 transform: [
@@ -114,8 +216,8 @@ export function BonusProjectionResult({
                   },
                   {
                     scale: bill.progress.interpolate({
-                      inputRange: [0, 0.2, 1],
-                      outputRange: [0.5, 1, 0.9],
+                      inputRange: [0, 0.18, 1],
+                      outputRange: [0.35, 1.15, 0.82],
                     }),
                   },
                 ],
@@ -133,18 +235,24 @@ export function BonusProjectionResult({
           {currency && <Text style={styles.currency}>{currency}</Text>}
         </View>
         <Text style={styles.resultLabel}>Per Year</Text>
+
+
+        <FadeIn delay={3000} duration={450} style={styles.copy}>
+          <Text style={styles.disclaimerLabel}>*Amount is calculated based on your bet type with a maximum amount of $1,000 per month</Text></FadeIn>
+
       </FadeIn>
-    </View>
+    </View >
   );
 }
 
 const styles = StyleSheet.create({
   result: {
     alignItems: "center",
-    minHeight: 220,
+    minHeight: 440,
     justifyContent: "center",
     overflow: "visible",
     position: "relative",
+    width: "100%",
   },
   billLayer: {
     bottom: 0,
@@ -155,7 +263,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   bill: {
-    bottom: 12,
+    bottom: -24,
     position: "absolute",
   },
   copy: {
@@ -175,6 +283,15 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     textAlign: "center",
     textTransform: "lowercase",
+  },
+  disclaimerLabel: {
+    ...text.default,
+    color: colors.foreground,
+    fontSize: 14,
+    fontWeight: "800",
+    textAlign: "center",
+    textTransform: "lowercase",
+    marginTop: 30,
   },
   amount: {
     ...text.default,
