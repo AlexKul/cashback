@@ -13,6 +13,7 @@ import { colors, text } from "@/styles/theme";
 type BonusProjectionResultProps = {
   amountLabel: string;
   currency: string | null | undefined;
+  upsellMessage?: string | null;
 };
 
 type BillParticle = {
@@ -145,6 +146,7 @@ const billParticleConfigs = [
 export function BonusProjectionResult({
   amountLabel,
   currency,
+  upsellMessage,
 }: BonusProjectionResultProps) {
   const [billParticles] = useState<BillParticle[]>(() =>
     billParticleConfigs.map((config) => ({
@@ -234,14 +236,21 @@ export function BonusProjectionResult({
           <Text style={styles.amount}>{amountLabel}</Text>
           {currency && <Text style={styles.currency}>{currency}</Text>}
         </View>
-        <Text style={styles.resultLabel}>Per Year</Text>
+        <Text style={styles.resultLabel}>Bonus cash Per Year</Text>
 
-
+        {upsellMessage && (
+          <FadeIn delay={1800} duration={450} style={styles.copy}>
+            <Text style={styles.upsellLabel}>{upsellMessage}</Text>
+          </FadeIn>
+        )}
         <FadeIn delay={3000} duration={450} style={styles.copy}>
-          <Text style={styles.disclaimerLabel}>*Amount is calculated based on your bet type with a maximum amount of $1,000 per month</Text></FadeIn>
-
+          <Text style={styles.disclaimerLabel}>
+            *Amount is calculated based on your bet type with a maximum amount
+            of $1,000 per month
+          </Text>
+        </FadeIn>
       </FadeIn>
-    </View >
+    </View>
   );
 }
 
@@ -280,9 +289,7 @@ const styles = StyleSheet.create({
     ...text.default,
     color: colors.foreground,
     fontSize: 24,
-    fontWeight: "800",
     textAlign: "center",
-    textTransform: "lowercase",
   },
   disclaimerLabel: {
     ...text.default,
@@ -292,6 +299,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textTransform: "lowercase",
     marginTop: 30,
+  },
+  upsellLabel: {
+    ...text.default,
+    color: colors.foreground,
+    fontSize: 18,
+    fontWeight: "800",
+    marginTop: 24,
+    textAlign: "center",
+    textTransform: "lowercase",
   },
   amount: {
     ...text.default,

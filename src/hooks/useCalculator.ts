@@ -85,6 +85,18 @@ export function useCalculator() {
     selectedBetType,
   ]);
 
+  const shouldSuggestHigherBetType = useMemo(() => {
+    if (!cashbackProgram || !selectedBetType || !projectionAmountLabel) {
+      return false;
+    }
+
+    const highestCashbackRate = Math.max(
+      ...cashbackProgram.tiers.map((betType) => betType.cashbackRate),
+    );
+
+    return selectedBetType.cashbackRate < highestCashbackRate;
+  }, [cashbackProgram, projectionAmountLabel, selectedBetType]);
+
   function selectBetType(betTypeId: string) {
     const nextBetType = cashbackProgram?.tiers.find(
       (betType) => betType.id === betTypeId,
@@ -128,8 +140,12 @@ export function useCalculator() {
     calculatorStep,
     canSubmitWeeklyBetAmount: parsedWeeklyBetAmount !== null,
     isBetTypeMenuOpen,
+    programName: cashbackProgram?.programName ?? "",
     projectionAmountLabel,
     projectionCurrency: projectionAmountLabel ? cashbackProgram?.currency : null,
+    projectionUpsellMessage: shouldSuggestHigherBetType
+      ? "you could earn more if changed your bet type"
+      : null,
     resetCalculator,
     selectBetType,
     selectedBetTypeId: selectedBetType?.id ?? null,

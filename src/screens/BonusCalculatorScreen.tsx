@@ -25,6 +25,8 @@ export function BonusCalculatorScreen() {
     canSubmitWeeklyBetAmount,
     projectionAmountLabel,
     projectionCurrency,
+    projectionUpsellMessage,
+    programName,
     resetCalculator,
     selectBetType,
     selectedBetTypeId,
@@ -59,13 +61,14 @@ export function BonusCalculatorScreen() {
           amountLabel={projectionAmountLabel}
           currency={projectionCurrency}
           key={projectionAmountLabel}
+          upsellMessage={projectionUpsellMessage}
         />
         <Pressable
           accessibilityRole="button"
           onPress={resetCalculator}
           style={styles.resetButton}
         >
-          <Text style={styles.resetButtonText}>Reset</Text>
+          <Text style={styles.resetButtonText}>Restart</Text>
         </Pressable>
       </View>
     );
@@ -76,6 +79,7 @@ export function BonusCalculatorScreen() {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={styles.container}
     >
+
       <Pressable
         accessibilityLabel="Go back"
         accessibilityRole="button"
@@ -84,7 +88,6 @@ export function BonusCalculatorScreen() {
       >
         <Text style={styles.backButtonText}>{"< Back"}</Text>
       </Pressable>
-
       <View style={styles.content}>
         {calculatorStep === "betType" ? (
           <FadeIn
@@ -177,6 +180,14 @@ const styles = StyleSheet.create({
   content: {
     gap: 28,
   },
+  programName: {
+    ...text.default,
+    color: colors.payout,
+    fontSize: 18,
+    fontWeight: "800",
+    textAlign: "center",
+    marginBottom: 80,
+  },
   step: {
     gap: 24,
     marginHorizontal: 40,
@@ -256,6 +267,5 @@ const styles = StyleSheet.create({
     color: colors.foreground,
     fontSize: 16,
     fontWeight: "800",
-    textTransform: "lowercase",
   },
 });
