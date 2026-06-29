@@ -143,6 +143,7 @@ docs/pages/versions/*/react-native/*.diff
 
 # TypeScript state
 *.tsbuildinfo
+.test-build/
 
 # SWC cache outputs
 .swc/

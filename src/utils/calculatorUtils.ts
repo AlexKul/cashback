@@ -33,7 +33,7 @@ export function parseWeeklyBetAmount(value: string): number | null {
   const normalizedValue = value.replace(/[$,\s]/g, "");
   const parsedValue = Number(normalizedValue);
 
-  if (!normalizedValue || Number.isNaN(parsedValue) || parsedValue <= 0) {
+  if (!normalizedValue || !Number.isFinite(parsedValue) || parsedValue <= 0) {
     return null;
   }
 

@@ -79,7 +79,6 @@ export function BonusCalculatorScreen() {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={styles.container}
     >
-
       <Pressable
         accessibilityLabel="Go back"
         accessibilityRole="button"
@@ -89,6 +88,7 @@ export function BonusCalculatorScreen() {
         <Text style={styles.backButtonText}>{"< Back"}</Text>
       </Pressable>
       <View style={styles.content}>
+        {programName && <Text style={styles.programName}>{programName}</Text>}
         {calculatorStep === "betType" ? (
           <FadeIn
             duration={250}
