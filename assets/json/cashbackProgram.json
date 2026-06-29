@@ -1,0 +1,23 @@
+{
+  "program_name": "Bracco Sports Cashback",
+  "currency": "USD",
+  "max_monthly_cashback_cap": 1000,
+  "period": "monthly",
+  "tiers": [
+    {
+      "id": "straight",
+      "label": "Straight Bet",
+      "rate": 0.005
+    },
+    {
+      "id": "parlay_2",
+      "label": "2-Leg Parlay",
+      "rate": 0.024
+    },
+    {
+      "id": "parlay_3_plus",
+      "label": "3-Leg+ Parlay",
+      "rate": 0.04
+    }
+  ]
+}

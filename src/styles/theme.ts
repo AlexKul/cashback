@@ -6,3 +6,7 @@ export const colors = {
 export const radii = {
   control: 8,
 };
+
+export const fonts = {
+  archivoBlack: "ArchivoBlack",
+};

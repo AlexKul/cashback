@@ -1,41 +1,19 @@
-export type BetType = {
-  id: string;
-  label: string;
-  cashbackRate: number;
-};
-
-export type BonusProjection = {
-  monthlyCashback: number;
-  yearlyCashback: number;
-};
-
-export const betTypes: BetType[] = [
-  {
-    id: "straight",
-    label: "Straight",
-    cashbackRate: 0.005,
-  },
-  {
-    id: "two-leg-parlay",
-    label: "2-Leg Parlay",
-    cashbackRate: 0.024,
-  },
-  {
-    id: "three-leg-plus-parlay",
-    label: "3-Leg+ Parlay",
-    cashbackRate: 0.04,
-  },
-];
+import type { BonusProjection } from "@/models/calculator";
 
 export function calculateBonusProjection(
   weeklyBetAmount: number,
   cashbackRate: number,
+  maxMonthlyCashbackCap: number,
 ): BonusProjection {
-  const yearlyCashback = roundCurrency(weeklyBetAmount * cashbackRate * 52);
+  const uncappedMonthlyCashback = (weeklyBetAmount * cashbackRate * 52) / 12;
+  const monthlyCashback = Math.min(
+    uncappedMonthlyCashback,
+    maxMonthlyCashbackCap,
+  );
 
   return {
-    monthlyCashback: roundCurrency(yearlyCashback / 12),
-    yearlyCashback,
+    monthlyCashback: roundCurrency(monthlyCashback),
+    yearlyCashback: roundCurrency(monthlyCashback * 12),
   };
 }
 
@@ -43,10 +21,10 @@ export function formatCashbackRate(rate: number): string {
   return `${(rate * 100).toFixed(2)}%`;
 }
 
-export function formatCurrency(value: number): string {
+export function formatCurrency(value: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "USD",
+    currency,
     maximumFractionDigits: 0,
   }).format(value);
 }

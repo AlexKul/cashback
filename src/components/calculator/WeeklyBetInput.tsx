@@ -3,14 +3,19 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import { colors, radii } from "@/styles/theme";
 
 type WeeklyBetInputProps = {
+  label?: string;
   onChangeText: (value: string) => void;
   value: string;
 };
 
-export function WeeklyBetInput({ onChangeText, value }: WeeklyBetInputProps) {
+export function WeeklyBetInput({
+  label = "Bet per week",
+  onChangeText,
+  value,
+}: WeeklyBetInputProps) {
   return (
     <View style={styles.field}>
-      <Text style={styles.label}>Bet per week</Text>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         keyboardType="decimal-pad"
         onChangeText={onChangeText}

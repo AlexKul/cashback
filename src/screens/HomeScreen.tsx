@@ -1,12 +1,13 @@
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
-import { colors, radii } from "@/styles/theme";
+import { colors, fonts, radii } from "@/styles/theme";
+import { FadeIn } from "@/components";
 
 export function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <FadeIn delay={150} duration={500} style={styles.container}>
       <Image
         accessibilityLabel="Cashback logo"
         contentFit="contain"
@@ -19,9 +20,9 @@ export function HomeScreen() {
         bonus balance you could earn.
       </Text>
       <Link href="/calc" style={styles.link}>
-        Open Calculator
+        Learn More
       </Link>
-    </View>
+    </FadeIn>
   );
 }
 
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: colors.foreground,
+    fontFamily: fonts.archivoBlack,
     fontSize: 22,
     textAlign: "center",
   },
@@ -50,6 +52,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.control,
     borderWidth: 1,
     color: colors.foreground,
+    fontFamily: fonts.archivoBlack,
     fontSize: 16,
     fontWeight: "700",
     marginTop: 12,
