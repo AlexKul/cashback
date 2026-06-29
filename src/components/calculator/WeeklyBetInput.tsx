@@ -18,14 +18,17 @@ export function WeeklyBetInput({
   return (
     <View style={styles.field}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
-        keyboardType="decimal-pad"
-        onChangeText={onChangeText}
-        placeholder="$0"
-        placeholderTextColor={colors.foreground}
-        style={styles.input}
-        value={value}
-      />
+      <View style={styles.inputShell}>
+        <Text style={styles.currencyPrefix}>$</Text>
+        <TextInput
+          keyboardType="decimal-pad"
+          onChangeText={onChangeText}
+          placeholder="0"
+          placeholderTextColor={colors.foreground}
+          style={styles.input}
+          value={value}
+        />
+      </View>
       {errorText && <Text style={styles.error}>{errorText}</Text>}
     </View>
   );
@@ -39,23 +42,36 @@ const styles = StyleSheet.create({
   label: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: "700",
   },
-  input: {
-    ...text.default,
+  inputShell: {
+    alignItems: "center",
     borderColor: colors.foreground,
     borderRadius: radii.control,
     borderWidth: 1,
+    flexDirection: "row",
+    minHeight: 56,
+    paddingHorizontal: 18,
+  },
+  currencyPrefix: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 16,
     fontWeight: "700",
-    minHeight: 56,
-    paddingHorizontal: 14,
+    marginRight: 4,
+  },
+  input: {
+    ...text.default,
+    color: colors.foreground,
+    flex: 1,
+    fontSize: 16,
+    fontWeight: "700",
+    paddingVertical: 0,
   },
   error: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 12,
+    fontSize: 18,
   },
 });

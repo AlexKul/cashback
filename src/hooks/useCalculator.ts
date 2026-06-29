@@ -58,7 +58,7 @@ export function useCalculator() {
     [weeklyBetAmount],
   );
 
-  const projectionText = useMemo(() => {
+  const projectionAmountLabel = useMemo(() => {
     if (
       !cashbackProgram ||
       !selectedBetType ||
@@ -74,13 +74,10 @@ export function useCalculator() {
       cashbackProgram.maxMonthlyCashbackCap,
     );
 
-    return `You can earn ${formatCurrency(
-      projection.monthlyCashback,
-      cashbackProgram.currency,
-    )} per month or ${formatCurrency(
+    return formatCurrency(
       projection.yearlyCashback,
       cashbackProgram.currency,
-    )} per year!`;
+    );
   }, [
     cashbackProgram,
     hasSubmittedWeeklyAmount,
@@ -118,12 +115,22 @@ export function useCalculator() {
     }
   }
 
+  function resetCalculator() {
+    setCalculatorStep("betType");
+    setHasSubmittedWeeklyAmount(false);
+    setIsBetTypeMenuOpen(false);
+    setSelectedBetType(null);
+    setWeeklyBetAmount("");
+  }
+
   return {
     betTypeOptions,
     calculatorStep,
     canSubmitWeeklyBetAmount: parsedWeeklyBetAmount !== null,
     isBetTypeMenuOpen,
-    projectionText,
+    projectionAmountLabel,
+    projectionCurrency: projectionAmountLabel ? cashbackProgram?.currency : null,
+    resetCalculator,
     selectBetType,
     selectedBetTypeId: selectedBetType?.id ?? null,
     selectedBetTypeLabel:

@@ -5,7 +5,7 @@ export function calculateBonusProjection(
   cashbackRate: number,
   maxMonthlyCashbackCap: number,
 ): BonusProjection {
-  const uncappedMonthlyCashback = (weeklyBetAmount * cashbackRate * 52) / 12;
+  const uncappedMonthlyCashback = weeklyBetAmount * cashbackRate * 4;
   const monthlyCashback = Math.min(
     uncappedMonthlyCashback,
     maxMonthlyCashbackCap,

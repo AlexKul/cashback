@@ -16,8 +16,7 @@ export function HomeScreen() {
       />
       <Text style={styles.subtitle}>
         Get the most of out of your play! Starting June 28, 2026. You can earn
-        up to 4% on every bet you place. Try our calculator to see how much
-        bonus balance you could earn.
+        up to 4% on every bet you place. Tap on Learn More to find out how much you can earn.
       </Text>
       <Link href="/calc" style={styles.link}>
         Learn More
@@ -36,14 +35,14 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   logo: {
-    height: 300,
+    height: 220,
     marginBottom: 8,
     width: 500,
   },
   subtitle: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 22,
+    fontSize: 18,
     textAlign: "center",
   },
   link: {
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
     color: colors.foreground,
     fontSize: 16,
     fontWeight: "700",
-    marginTop: 12,
+    marginTop: 20,
     paddingHorizontal: 18,
     paddingVertical: 12,
   },

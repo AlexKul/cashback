@@ -23,7 +23,9 @@ export function BonusCalculatorScreen() {
     betTypeOptions,
     calculatorStep,
     canSubmitWeeklyBetAmount,
-    projectionText,
+    projectionAmountLabel,
+    projectionCurrency,
+    resetCalculator,
     selectBetType,
     selectedBetTypeId,
     submitWeeklyBetAmount,
@@ -50,6 +52,25 @@ export function BonusCalculatorScreen() {
     router.replace("/");
   }
 
+  if (projectionAmountLabel) {
+    return (
+      <View style={styles.resultContainer}>
+        <BonusProjectionResult
+          amountLabel={projectionAmountLabel}
+          currency={projectionCurrency}
+          key={projectionAmountLabel}
+        />
+        <Pressable
+          accessibilityRole="button"
+          onPress={resetCalculator}
+          style={styles.resetButton}
+        >
+          <Text style={styles.resetButtonText}>Reset</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -73,7 +94,7 @@ export function BonusCalculatorScreen() {
             to={isBetTypeQuestionFadingOut ? 0 : 1}
           >
             <Text style={styles.question}>
-              What is your favourite type of bet?
+              What is your go to Bet?
             </Text>
             <View style={styles.betTypeList}>
               {betTypeOptions.map((betType) => {
@@ -90,7 +111,6 @@ export function BonusCalculatorScreen() {
                     ]}
                   >
                     <Text style={styles.betTypeLabel}>{betType.label}</Text>
-                    <Text style={styles.betTypeRate}>{betType.rateLabel}</Text>
                   </Pressable>
                 );
               })}
@@ -99,7 +119,7 @@ export function BonusCalculatorScreen() {
         ) : (
           <FadeIn key="weekly-amount-question" style={styles.step}>
             <Text style={styles.question}>
-              How much do you play in a week?
+              How much $ do you play in a week?
             </Text>
             <WeeklyBetInput
               errorText={weeklyBetAmountError}
@@ -118,7 +138,6 @@ export function BonusCalculatorScreen() {
             >
               <Text style={styles.doneButtonText}>Done</Text>
             </Pressable>
-            {projectionText && <BonusProjectionResult text={projectionText} />}
           </FadeIn>
         )}
       </View>
@@ -130,6 +149,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+    justifyContent: "center",
+    padding: 24,
+  },
+  resultContainer: {
+    alignItems: "center",
+    backgroundColor: colors.background,
+    flex: 1,
     justifyContent: "center",
     padding: 24,
   },
@@ -153,13 +179,14 @@ const styles = StyleSheet.create({
   },
   step: {
     gap: 24,
+    marginHorizontal: 40,
   },
   question: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 34,
+    fontSize: 26,
     fontWeight: "800",
-    lineHeight: 42,
+    lineHeight: 30,
     textAlign: "center",
   },
   betTypeList: {
@@ -183,11 +210,13 @@ const styles = StyleSheet.create({
     color: colors.foreground,
     fontSize: 22,
     fontWeight: "800",
+    flex: 1,
+    textAlign: "center",
   },
   betTypeRate: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
   },
   doneButton: {
@@ -206,7 +235,25 @@ const styles = StyleSheet.create({
   doneButtonText: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "800",
+  },
+  resetButton: {
+    alignItems: "center",
+    borderColor: colors.foreground,
+    borderRadius: radii.control,
+    borderWidth: 1,
+    justifyContent: "center",
+    marginTop: 36,
+    minHeight: 56,
+    minWidth: 160,
+    paddingHorizontal: 24,
+  },
+  resetButtonText: {
+    ...text.default,
+    color: colors.foreground,
+    fontSize: 16,
+    fontWeight: "800",
+    textTransform: "lowercase",
   },
 });
