@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { colors, radii } from "@/styles/theme";
+import { colors, radii, text } from "@/styles/theme";
 
 type BonusProjectionResultProps = {
   text: string;
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   resultText: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 34,
     fontWeight: "800",

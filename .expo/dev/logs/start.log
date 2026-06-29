@@ -180,3 +180,10 @@
 {"_e":"metro:bundling:started","_t":1782742830240,"id":"3o","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
 {"_e":"metro:bundling:progress","_t":1782742830240,"id":"3o","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1782742830281,"id":"3o","total":1,"ms":40.744166}
+{"_e":"metro:bundling:started","_t":1782743485149,"id":"3p","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782743485149,"id":"3p","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782743485189,"id":"3p","total":1,"ms":40.416875}
+{"_e":"metro:bundling:failed","_t":1782743648823,"id":null,"message":"SyntaxError: /Users/alexkulakevich/Development/cashback/src/screens/BonusCalculatorScreen.tsx: Unexpected token (63:45)\n\n  61 |         style={styles.backButton}\n  62 |       >\n> 63 |         <Text style={styles.backButtonText}><-Back</Text>\n     |                                              ^\n  64 |       </Pressable>\n  65 |\n  66 |       <View style={styles.content}>","importStack":null,"filename":"src/screens/BonusCalculatorScreen.tsx","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:started","_t":1782754661513,"id":"3r","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782754661513,"id":"3r","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782754661559,"id":"3r","total":1,"ms":45.312208}

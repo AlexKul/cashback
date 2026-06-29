@@ -1,14 +1,16 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
-import { colors, radii } from "@/styles/theme";
+import { colors, radii, text } from "@/styles/theme";
 
 type WeeklyBetInputProps = {
+  errorText?: string | null;
   label?: string;
   onChangeText: (value: string) => void;
   value: string;
 };
 
 export function WeeklyBetInput({
+  errorText,
   label = "Bet per week",
   onChangeText,
   value,
@@ -24,6 +26,7 @@ export function WeeklyBetInput({
         style={styles.input}
         value={value}
       />
+      {errorText && <Text style={styles.error}>{errorText}</Text>}
     </View>
   );
 }
@@ -34,11 +37,13 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   label: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 14,
     fontWeight: "700",
   },
   input: {
+    ...text.default,
     borderColor: colors.foreground,
     borderRadius: radii.control,
     borderWidth: 1,
@@ -47,5 +52,10 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     minHeight: 56,
     paddingHorizontal: 14,
+  },
+  error: {
+    ...text.default,
+    color: colors.foreground,
+    fontSize: 12,
   },
 });

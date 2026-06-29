@@ -40,6 +40,17 @@ export function parseWeeklyBetAmount(value: string): number | null {
   return parsedValue;
 }
 
+export function sanitizeWeeklyBetAmountInput(value: string): string {
+  const numericValue = value.replace(/[^0-9.]/g, "");
+  const [integerPart = "", ...decimalParts] = numericValue.split(".");
+
+  if (decimalParts.length === 0) {
+    return integerPart;
+  }
+
+  return `${integerPart}.${decimalParts.join("")}`;
+}
+
 function roundCurrency(value: number): number {
   return Math.round(value * 100) / 100;
 }

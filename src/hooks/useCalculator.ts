@@ -5,6 +5,7 @@ import {
   formatCashbackRate,
   formatCurrency,
   parseWeeklyBetAmount,
+  sanitizeWeeklyBetAmountInput,
 } from "../utils/calculatorUtils";
 import type { BetType, CashbackProgram } from "../models/calculator";
 import { fetchCashbackProgram } from "../services/cashbackProgramService";
@@ -107,7 +108,7 @@ export function useCalculator() {
   }
 
   function updateWeeklyBetAmount(value: string) {
-    setWeeklyBetAmount(value);
+    setWeeklyBetAmount(sanitizeWeeklyBetAmountInput(value));
     setHasSubmittedWeeklyAmount(false);
   }
 
@@ -131,6 +132,10 @@ export function useCalculator() {
     submitWeeklyBetAmount,
     toggleBetTypeMenu,
     updateWeeklyBetAmount,
+    weeklyBetAmountError:
+      weeklyBetAmount.length > 0 && parsedWeeklyBetAmount === null
+        ? "Enter an amount greater than 0."
+        : null,
     weeklyBetAmount,
   };
 }

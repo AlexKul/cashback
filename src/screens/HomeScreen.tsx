@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { Link } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 
-import { colors, fonts, radii } from "@/styles/theme";
+import { colors, radii, text } from "@/styles/theme";
 import { FadeIn } from "@/components";
 
 export function HomeScreen() {
@@ -41,18 +41,18 @@ const styles = StyleSheet.create({
     width: 500,
   },
   subtitle: {
+    ...text.default,
     color: colors.foreground,
-    fontFamily: fonts.archivoBlack,
     fontSize: 22,
     textAlign: "center",
   },
   link: {
+    ...text.default,
     backgroundColor: colors.background,
     borderColor: colors.foreground,
     borderRadius: radii.control,
     borderWidth: 1,
     color: colors.foreground,
-    fontFamily: fonts.archivoBlack,
     fontSize: 16,
     fontWeight: "700",
     marginTop: 12,

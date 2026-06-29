@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import type { BetTypeOptionViewData } from "@/hooks/useCalculator";
-import { colors, radii } from "@/styles/theme";
+import { colors, radii, text } from "@/styles/theme";
 
 type BetTypeDropdownProps = {
   isOpen: boolean;
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   label: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 14,
     fontWeight: "700",
@@ -78,12 +79,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   selectText: {
+    ...text.default,
     color: colors.foreground,
     flex: 1,
     fontSize: 16,
     fontWeight: "700",
   },
   selectIndicator: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 12,
     fontWeight: "700",
@@ -112,11 +115,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   menuItemText: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 15,
     fontWeight: "700",
   },
   menuItemRate: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 15,
     fontWeight: "700",

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -12,9 +13,10 @@ import { FadeIn } from "@/components";
 import { BonusProjectionResult } from "@/components/calculator/BonusProjectionResult";
 import { WeeklyBetInput } from "@/components/calculator/WeeklyBetInput";
 import { useCalculator } from "@/hooks/useCalculator";
-import { colors, radii } from "@/styles/theme";
+import { colors, radii, text } from "@/styles/theme";
 
 export function BonusCalculatorScreen() {
+  const router = useRouter();
   const [isBetTypeQuestionFadingOut, setIsBetTypeQuestionFadingOut] =
     useState(false);
   const {
@@ -27,6 +29,7 @@ export function BonusCalculatorScreen() {
     submitWeeklyBetAmount,
     updateWeeklyBetAmount,
     weeklyBetAmount,
+    weeklyBetAmountError,
   } = useCalculator();
 
   function handleBetTypeSelect(betTypeId: string) {
@@ -38,11 +41,29 @@ export function BonusCalculatorScreen() {
     }, 250);
   }
 
+  function handleBackPress() {
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+
+    router.replace("/");
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={styles.container}
     >
+      <Pressable
+        accessibilityLabel="Go back"
+        accessibilityRole="button"
+        onPress={handleBackPress}
+        style={styles.backButton}
+      >
+        <Text style={styles.backButtonText}>{"< Back"}</Text>
+      </Pressable>
+
       <View style={styles.content}>
         {calculatorStep === "betType" ? (
           <FadeIn
@@ -81,6 +102,7 @@ export function BonusCalculatorScreen() {
               How much do you play in a week?
             </Text>
             <WeeklyBetInput
+              errorText={weeklyBetAmountError}
               label="Weekly play amount"
               onChangeText={updateWeeklyBetAmount}
               value={weeklyBetAmount}
@@ -111,6 +133,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 24,
   },
+  backButton: {
+    alignItems: "center",
+    borderWidth: 1,
+    left: 24,
+    minHeight: 44,
+    minWidth: 44,
+    justifyContent: "center",
+    position: "absolute",
+    top: 80,
+  },
+  backButtonText: {
+    ...text.default,
+    color: colors.foreground,
+    fontSize: 14,
+  },
   content: {
     gap: 28,
   },
@@ -118,6 +155,7 @@ const styles = StyleSheet.create({
     gap: 24,
   },
   question: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 34,
     fontWeight: "800",
@@ -141,11 +179,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   betTypeLabel: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 22,
     fontWeight: "800",
   },
   betTypeRate: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 18,
     fontWeight: "700",
@@ -158,11 +198,13 @@ const styles = StyleSheet.create({
     minHeight: 56,
     justifyContent: "center",
     paddingHorizontal: 18,
+    marginTop: 50,
   },
   disabledButton: {
     opacity: 0.4,
   },
   doneButtonText: {
+    ...text.default,
     color: colors.foreground,
     fontSize: 18,
     fontWeight: "800",

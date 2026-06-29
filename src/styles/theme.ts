@@ -10,3 +10,9 @@ export const radii = {
 export const fonts = {
   archivoBlack: "ArchivoBlack",
 };
+
+export const text = {
+  default: {
+    fontFamily: fonts.archivoBlack,
+  },
+};
