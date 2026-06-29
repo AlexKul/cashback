@@ -1,10 +1,24 @@
+import { StatusBar } from "expo-status-bar";
 import { Stack } from "expo-router";
+
+import { colors } from "@/styles/theme";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ title: "Cashback" }} />
-      <Stack.Screen name="offers" options={{ title: "Offers" }} />
-    </Stack>
+    <>
+      <StatusBar style="light" />
+      <Stack
+        screenOptions={{
+          contentStyle: { backgroundColor: colors.background },
+          headerShown: false,
+          headerStyle: { backgroundColor: colors.background },
+          headerTintColor: colors.foreground,
+          headerTitleStyle: { color: colors.foreground },
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen name="calc" />
+      </Stack>
+    </>
   );
 }
