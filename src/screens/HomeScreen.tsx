@@ -1,14 +1,15 @@
 import { Image } from "expo-image";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { useEffect, useState } from "react";
 
+import { FadeIn, GradientButton } from "@/components";
 import { colors, radii, text } from "@/styles/theme";
-import { FadeIn } from "@/components";
 
 const starburstRays = Array.from({ length: 24 }, (_, index) => index);
 
 export function HomeScreen() {
+  const router = useRouter();
   const [starburstRotation] = useState(() => new Animated.Value(0));
 
   useEffect(() => {
@@ -35,38 +36,42 @@ export function HomeScreen() {
 
   return (
     <FadeIn delay={150} duration={500} style={styles.container}>
-      <View style={styles.logoStage}>
-        <Animated.View
-          pointerEvents="none"
-          style={[
-            styles.starburst,
-            { transform: [{ rotate: starburstRotate }] },
-          ]}
-        >
-          {starburstRays.map((ray) => (
-            <View
-              key={ray}
-              style={[
-                styles.starburstRay,
-                { transform: [{ rotate: `${ray * 15}deg` }] },
-              ]}
-            />
-          ))}
-        </Animated.View>
-        <Image
-          accessibilityLabel="Cashback logo"
-          contentFit="contain"
-          source={require("@/assets/images/cashback_logo.png")}
-          style={styles.logo}
+      <View style={styles.card}>
+        <View style={styles.logoStage}>
+          <Animated.View
+            pointerEvents="none"
+            style={[
+              styles.starburst,
+              { transform: [{ rotate: starburstRotate }] },
+            ]}
+          >
+            {starburstRays.map((ray) => (
+              <View
+                key={ray}
+                style={[
+                  styles.starburstRay,
+                  { transform: [{ rotate: `${ray * 15}deg` }] },
+                ]}
+              />
+            ))}
+          </Animated.View>
+          <Image
+            accessibilityLabel="Cashback logo"
+            contentFit="contain"
+            source={require("@/assets/images/cashback_logo.png")}
+            style={styles.logo}
+          />
+        </View>
+        <Text style={styles.subtitle}>
+          Get the most out of your play. Starting June 28, 2026, you can earn
+          up to 4% on every bet you place.
+        </Text>
+        <GradientButton
+          label="Get My Estimate"
+          onPress={() => router.push("/calc")}
+          style={styles.link}
         />
       </View>
-      <Text style={styles.subtitle}>
-        Get the most of out of your play! Starting June 28, 2026. You can earn
-        up to 4% on every bet you place. Tap on Get My Estimate to find out how much you can earn.
-      </Text>
-      <Link href="/calc" style={styles.link}>
-        Get My Estimate
-      </Link>
     </FadeIn>
   );
 }
@@ -76,56 +81,56 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: colors.background,
-    gap: 12,
     justifyContent: "center",
     padding: 24,
   },
+  card: {
+    alignItems: "center",
+    backgroundColor: colors.card,
+    borderRadius: radii.control,
+    gap: 18,
+    maxWidth: 420,
+    overflow: "hidden",
+    padding: 20,
+    width: "100%",
+  },
   logoStage: {
     alignItems: "center",
-    height: 250,
+    height: 230,
     justifyContent: "center",
-    marginBottom: 8,
     overflow: "visible",
     position: "relative",
     width: "100%",
   },
   starburst: {
-    height: 300,
-    opacity: 0.65,
+    height: 280,
+    opacity: 0.38,
     position: "absolute",
-    width: 300,
+    width: 280,
   },
   starburstRay: {
-    backgroundColor: colors.payout,
-    height: 1000,
-    left: 147,
-    opacity: 0.72,
+    backgroundColor: colors.gradientStart,
+    height: 680,
+    left: 137,
+    opacity: 0.38,
     position: "absolute",
     top: 0,
-    transformOrigin: "3px 150px",
+    transformOrigin: "3px 140px",
     width: 6,
   },
   logo: {
-    height: 220,
-    width: 500,
+    height: 200,
+    width: 360,
   },
   subtitle: {
     ...text.default,
-    color: colors.foreground,
-    fontSize: 18,
+    color: colors.foregroundMuted,
+    fontSize: 15,
+    lineHeight: 22,
     textAlign: "center",
   },
   link: {
-    ...text.default,
-    backgroundColor: colors.background,
-    borderColor: colors.foreground,
-    borderRadius: radii.control,
-    borderWidth: 1,
-    color: colors.foreground,
-    fontSize: 16,
-    fontWeight: "700",
-    marginTop: 20,
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    marginTop: 8,
+    width: "100%",
   },
 });

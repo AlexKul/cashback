@@ -36,26 +36,25 @@ export function WeeklyBetInput({
 
 const styles = StyleSheet.create({
   field: {
-    flex: 1,
-    gap: 8,
-    width: "50%",
     alignSelf: "center",
+    gap: 8,
+    width: "100%",
   },
   inputShell: {
     alignItems: "center",
-    borderColor: colors.foreground,
+    backgroundColor: colors.cardPressed,
+    borderColor: colors.cardPressed,
     borderRadius: radii.control,
     borderWidth: 1,
     justifyContent: "center",
-    minHeight: 56,
+    minHeight: 64,
     paddingHorizontal: 18,
     position: "relative",
   },
   currencyPrefix: {
     ...text.default,
-    color: colors.foreground,
+    color: colors.foregroundMuted,
     fontSize: 16,
-    fontWeight: "700",
     left: 18,
     position: "absolute",
   },
@@ -63,7 +62,6 @@ const styles = StyleSheet.create({
     ...text.default,
     color: colors.foreground,
     fontSize: 18,
-    fontWeight: "700",
     paddingHorizontal: 34,
     paddingVertical: 0,
     textAlign: "center",
@@ -71,7 +69,9 @@ const styles = StyleSheet.create({
   },
   error: {
     ...text.default,
-    color: colors.foreground,
-    fontSize: 18,
+    color: colors.foregroundMuted,
+    fontSize: 13,
+    lineHeight: 18,
+    textAlign: "center",
   },
 });

@@ -3,13 +3,12 @@ import { useRouter } from "expo-router";
 import {
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 
-import { FadeIn } from "@/components";
+import { FadeIn, GradientButton } from "@/components";
 import { BonusProjectionResult } from "@/components/calculator/BonusProjectionResult";
 import { WeeklyBetInput } from "@/components/calculator/WeeklyBetInput";
 import { useCalculator } from "@/hooks/useCalculator";
@@ -63,13 +62,11 @@ export function BonusCalculatorScreen() {
           key={projectionAmountLabel}
           upsellMessage={projectionUpsellMessage}
         />
-        <Pressable
-          accessibilityRole="button"
+        <GradientButton
+          label="Restart"
           onPress={resetCalculator}
           style={styles.resetButton}
-        >
-          <Text style={styles.resetButtonText}>Restart</Text>
-        </Pressable>
+        />
       </View>
     );
   }
@@ -79,14 +76,12 @@ export function BonusCalculatorScreen() {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
       style={styles.container}
     >
-      <Pressable
-        accessibilityLabel="Go back"
-        accessibilityRole="button"
+      <GradientButton
+        label="< Back"
         onPress={handleBackPress}
         style={styles.backButton}
-      >
-        <Text style={styles.backButtonText}>{"< Back"}</Text>
-      </Pressable>
+        textStyle={styles.backButtonText}
+      />
       <View style={styles.content}>
         {programName && <Text style={styles.programName}>{programName}</Text>}
         {calculatorStep === "betType" ? (
@@ -104,17 +99,16 @@ export function BonusCalculatorScreen() {
                 const isSelected = selectedBetTypeId === betType.id;
 
                 return (
-                  <Pressable
-                    accessibilityRole="button"
+                  <GradientButton
                     key={betType.id}
+                    label={betType.label}
                     onPress={() => handleBetTypeSelect(betType.id)}
                     style={[
                       styles.betTypeButton,
                       isSelected && styles.selectedBetTypeButton,
                     ]}
-                  >
-                    <Text style={styles.betTypeLabel}>{betType.label}</Text>
-                  </Pressable>
+                    textStyle={styles.betTypeLabel}
+                  />
                 );
               })}
             </View>
@@ -130,17 +124,12 @@ export function BonusCalculatorScreen() {
               onChangeText={updateWeeklyBetAmount}
               value={weeklyBetAmount}
             />
-            <Pressable
-              accessibilityRole="button"
+            <GradientButton
               disabled={!canSubmitWeeklyBetAmount}
+              label="Done"
               onPress={submitWeeklyBetAmount}
-              style={[
-                styles.doneButton,
-                !canSubmitWeeklyBetAmount && styles.disabledButton,
-              ]}
-            >
-              <Text style={styles.doneButtonText}>Done</Text>
-            </Pressable>
+              style={styles.doneButton}
+            />
           </FadeIn>
         )}
       </View>
@@ -153,7 +142,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
     justifyContent: "center",
-    padding: 24,
+    padding: 22,
   },
   resultContainer: {
     alignItems: "center",
@@ -163,109 +152,68 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   backButton: {
-    alignItems: "center",
-    borderWidth: 1,
     left: 24,
-    minHeight: 44,
-    minWidth: 44,
-    justifyContent: "center",
     position: "absolute",
     top: 80,
+    width: 96,
+    zIndex: 2,
   },
   backButtonText: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 14,
+    fontSize: 13,
   },
   content: {
+    alignSelf: "center",
+    backgroundColor: colors.card,
+    borderRadius: radii.control,
     gap: 28,
+    maxWidth: 440,
+    padding: 20,
+    width: "100%",
   },
   programName: {
     ...text.default,
     color: colors.payout,
-    fontSize: 18,
-    fontWeight: "800",
+    fontSize: 16,
+    lineHeight: 22,
+    marginBottom: 24,
     textAlign: "center",
-    marginBottom: 80,
   },
   step: {
     gap: 24,
-    marginHorizontal: 40,
   },
   question: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 26,
-    fontWeight: "800",
-    lineHeight: 30,
+    fontSize: 22,
+    lineHeight: 28,
     textAlign: "center",
   },
   betTypeList: {
     gap: 12,
   },
   betTypeButton: {
-    alignItems: "center",
-    borderColor: colors.foreground,
-    borderRadius: radii.control,
-    borderWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    minHeight: 76,
-    paddingHorizontal: 18,
+    borderRadius: radii.pill,
+    minHeight: 64,
   },
   selectedBetTypeButton: {
+    borderColor: colors.foreground,
     borderWidth: 2,
   },
   betTypeLabel: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 22,
-    fontWeight: "800",
-    flex: 1,
+    fontSize: 17,
     textAlign: "center",
   },
-  betTypeRate: {
-    ...text.default,
-    color: colors.foreground,
-    fontSize: 16,
-    fontWeight: "700",
-  },
   doneButton: {
-    alignItems: "center",
-    borderColor: colors.foreground,
-    borderRadius: radii.control,
-    borderWidth: 1,
-    minHeight: 56,
-    justifyContent: "center",
-    paddingHorizontal: 18,
-    marginTop: 50,
-    width: "50%",
     alignSelf: "center",
-  },
-  disabledButton: {
-    opacity: 0.4,
-  },
-  doneButtonText: {
-    ...text.default,
-    color: colors.foreground,
-    fontSize: 16,
-    fontWeight: "800",
+    marginTop: 18,
+    width: "100%",
   },
   resetButton: {
-    alignItems: "center",
-    borderColor: colors.foreground,
-    borderRadius: radii.control,
-    borderWidth: 1,
-    justifyContent: "center",
     marginTop: 36,
-    minHeight: 56,
-    minWidth: 160,
-    paddingHorizontal: 24,
-  },
-  resetButtonText: {
-    ...text.default,
-    color: colors.foreground,
-    fontSize: 16,
-    fontWeight: "800",
+    width: 180,
   },
 });
