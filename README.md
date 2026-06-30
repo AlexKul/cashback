@@ -30,11 +30,50 @@ Cashback is an Expo Router app for estimating a sports cashback bonus. The app u
 
 ## Getting Started
 
+This project is set up for an Expo development build. Expo Go is not the main target because the app includes native project folders and `expo-dev-client`.
+
+Follow Expo's iOS Simulator development-build setup:
+
+- Install Node.js 22.13.x or newer.
+- Install Xcode from the Mac App Store.
+- Open Xcode once so it can finish installing required components.
+- Make sure an iOS Simulator is installed in Xcode.
+- Install and log in to EAS CLI:
+
+```bash
+npm install --global eas-cli
+eas login
+```
+
 Install dependencies:
 
 ```bash
 npm install
 ```
+
+The `postinstall` script patches a React Native Gradle plugin resolver issue needed for Android builds with this SDK/tooling combination.
+
+## iOS Simulator Development Build
+
+The `development` profile in `eas.json` already has `ios.simulator` set to `true`, which is required for iOS Simulator builds.
+
+Create the iOS Simulator development build:
+
+```bash
+eas build --platform ios --profile development
+```
+
+When the build finishes, install it on an iOS Simulator from the EAS prompt, Expo dashboard, Expo Orbit, or by dragging the local simulator archive onto the simulator if you built locally.
+
+Start the JavaScript bundler:
+
+```bash
+npm start
+```
+
+Then press `i` in the Expo CLI terminal to open the installed development build in the iOS Simulator.
+
+## Run Targets
 
 Start the Expo development server:
 
@@ -42,20 +81,16 @@ Start the Expo development server:
 npm start
 ```
 
-Then use the Expo CLI prompt to open the app in a development build, Android emulator, iOS simulator, or web browser.
-
-## Run Targets
-
-Start Android:
-
-```bash
-npm run android
-```
-
-Start iOS:
+Run iOS locally from the native project:
 
 ```bash
 npm run ios
+```
+
+Run Android locally from the native project:
+
+```bash
+npm run android
 ```
 
 Start web:
@@ -66,10 +101,22 @@ npm run web
 
 ## Development Builds
 
-Create an iOS development build with EAS:
+Create an iOS Simulator development build with EAS:
 
 ```bash
 eas build --platform ios --profile development
+```
+
+Create an iOS Simulator development build locally:
+
+```bash
+eas build --platform ios --profile development --local
+```
+
+Create an Android preview APK locally:
+
+```bash
+eas build --platform android --profile preview --local
 ```
 
 ## Quality Checks
