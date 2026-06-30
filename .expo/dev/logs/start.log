@@ -324,3 +324,12 @@
 {"_e":"metro:bundling:started","_t":1782835552140,"id":"3t","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
 {"_e":"metro:bundling:progress","_t":1782835552140,"id":"3t","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1782835552181,"id":"3t","total":1,"ms":41.314208}
+{"_e":"metro:bundling:started","_t":1782836060214,"id":"3v","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782836060214,"id":"3v","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782836060254,"id":"3v","total":1,"ms":39.717417}
+{"_e":"metro:server_log","_t":1782836078641,"level":"info","data":["Launching DevTools..."]}
+{"_e":"metro:bundling:started","_t":1782836079881,"id":"3x","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:started","_t":1782836089320,"id":"3z","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
+{"_e":"metro:bundling:progress","_t":1782836089320,"id":"3z","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782836089376,"id":"3z","total":1,"ms":56.439917}
+{"_e":"metro:bundling:started","_t":1782836099932,"id":"41","platform":"ios","environment":null,"entry":"node_modules/expo-router/entry.js"}
