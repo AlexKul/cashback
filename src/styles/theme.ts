@@ -1,12 +1,18 @@
 export const colors = {
   background: "#000000",
+  card: "#191919",
+  cardPressed: "#222222",
   foreground: "#FFFFFF",
+  foregroundMuted: "#B9B9B9",
+  gradientEnd: "#0B8CFF",
+  gradientStart: "#C04DFF",
   placeholder: "#5c5c5c",
-  payout: "#0a8b19",
+  payout: "#47D84F",
 };
 
 export const radii = {
-  control: 8,
+  control: 18,
+  pill: 28,
 };
 
 export const fonts = {
