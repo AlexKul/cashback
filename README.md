@@ -1,56 +1,107 @@
-# Welcome to your Expo app 👋
+# Cashback
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Cashback is an Expo Router app for estimating a sports cashback bonus. The app uses a local cashback program JSON file, walks the user through a short calculator flow, and reveals the yearly projection with animated visual effects.
 
-## Get started
+## What The App Contains
 
-1. Install dependencies
+- A dark themed home screen with the Cashback logo, animated starburst, and a call to action.
+- A bonus calculator screen with a two-step flow:
+  - Select a bet type.
+  - Enter the amount played per week.
+- A result reveal screen that shows the projected yearly cashback amount, currency, bill animation, restart button, and an upsell message when a higher-rate bet type is available.
+- Local program data in `assets/json/cashbackProgram.json`.
+- MVVM-style separation for calculator behavior:
+  - UI screens in `src/screens`.
+  - Reusable UI components in `src/components`.
+  - Calculator state and view data in `src/hooks/useCalculator.ts`.
+  - Local data loading in `src/services/cashbackProgramService.ts`.
+  - Calculator models in `src/models/calculator`.
+  - Pure calculation helpers in `src/utils/calculatorUtils.ts`.
+- Unit tests for calculator utilities in `tests/calculatorUtils.test.cjs`.
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- Expo SDK 56
+- React Native 0.85
+- React 19
+- Expo Router
+- TypeScript
+- Node's built-in test runner for utility tests
 
-   ```bash
-   npx expo start
-   ```
+## Getting Started
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start the Expo development server:
 
-### Other setup steps
+```bash
+npm start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Then use the Expo CLI prompt to open the app in a development build, Android emulator, iOS simulator, or web browser.
 
-## Learn more
+## Run Targets
 
-To learn more about developing your project with Expo, look at the following resources:
+Start Android:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run android
+```
 
-## Join the community
+Start iOS:
 
-Join our community of developers creating universal apps.
+```bash
+npm run ios
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Start web:
+
+```bash
+npm run web
+```
+
+## Development Builds
+
+Create an iOS development build with EAS:
+
+```bash
+eas build --platform ios --profile development
+```
+
+## Quality Checks
+
+Run lint:
+
+```bash
+npm run lint
+```
+
+Run unit tests:
+
+```bash
+npm test
+```
+
+## Cashback Program Data
+
+The calculator reads its bet types, cashback rates, currency, program name, and monthly cap from:
+
+```text
+assets/json/cashbackProgram.json
+```
+
+Update that file to change the program content without touching the calculator UI.
+
+## Important Files
+
+- `src/app/index.tsx`: home route.
+- `src/app/calc.tsx`: calculator route.
+- `src/screens/HomeScreen.tsx`: home screen UI.
+- `src/screens/BonusCalculatorScreen.tsx`: calculator flow UI.
+- `src/hooks/useCalculator.ts`: calculator view model and flow state.
+- `src/utils/calculatorUtils.ts`: pure calculation, formatting, parsing, and sanitizing helpers.
+- `src/styles/theme.ts`: shared colors, radii, and font references.
