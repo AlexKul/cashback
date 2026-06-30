@@ -26,12 +26,6 @@ export function BonusProjectionResult({
             <Text style={styles.upsellLabel}>{upsellMessage}</Text>
           </FadeIn>
         )}
-        <FadeIn delay={3000} duration={450} style={styles.copy}>
-          <Text style={styles.disclaimerLabel}>
-            *Amount is calculated based on your bet type with a maximum amount
-            of $1,000 per month
-          </Text>
-        </FadeIn>
       </FadeIn>
     </View>
   );

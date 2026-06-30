@@ -62,6 +62,18 @@ test("calculateBonusProjection applies the monthly cashback cap before yearly pr
   });
 });
 
+test("calculateBonusProjection supports custom monthly caps", () => {
+  assert.deepEqual(calculateBonusProjection(25000, 0.04, 500), {
+    monthlyCashback: 500,
+    yearlyCashback: 6000,
+  });
+
+  assert.deepEqual(calculateBonusProjection(25000, 0.04, 2500), {
+    monthlyCashback: 2500,
+    yearlyCashback: 30000,
+  });
+});
+
 test("calculateBonusProjection handles exact cap boundaries and zero values", () => {
   assert.deepEqual(calculateBonusProjection(6250, 0.04, 1000), {
     monthlyCashback: 1000,
@@ -79,6 +91,18 @@ test("calculateBonusProjection handles exact cap boundaries and zero values", ()
   });
 });
 
+test("calculateBonusProjection keeps very small positive projections", () => {
+  assert.deepEqual(calculateBonusProjection(0.01, 0.005, 1000), {
+    monthlyCashback: 0,
+    yearlyCashback: 0,
+  });
+
+  assert.deepEqual(calculateBonusProjection(0.25, 0.04, 1000), {
+    monthlyCashback: 0.04,
+    yearlyCashback: 0.48,
+  });
+});
+
 test("calculateBonusProjection rounds currency to cents", () => {
   assert.deepEqual(calculateBonusProjection(333.33, 0.005, 1000), {
     monthlyCashback: 6.67,
@@ -93,7 +117,9 @@ test("calculateBonusProjection rounds currency to cents", () => {
 
 test("formatCashbackRate renders percentage labels with two decimals", () => {
   const cases = [
+    [-0.005, "-0.50%"],
     [0, "0.00%"],
+    [0.0001, "0.01%"],
     [0.005, "0.50%"],
     [0.024, "2.40%"],
     [0.04, "4.00%"],
@@ -115,6 +141,8 @@ test("formatCurrency formats whole-dollar currency labels", () => {
     [1234567, "USD", "$1,234,567"],
     [-42, "USD", "-$42"],
     [1000, "EUR", "€1,000"],
+    [1000, "CAD", "CA$1,000"],
+    [1000, "GBP", "£1,000"],
   ];
 
   for (const [value, currency, expected] of cases) {
@@ -125,11 +153,14 @@ test("formatCurrency formats whole-dollar currency labels", () => {
 test("parseWeeklyBetAmount accepts valid money-like input", () => {
   const cases = [
     ["1", 1],
+    ["001", 1],
     ["300", 300],
     ["$300", 300],
     [" 1,234.56 ", 1234.56],
     ["$ 0.01", 0.01],
     ["\t$9,876\n", 9876],
+    ["000.50", 0.5],
+    ["1e3", 1000],
   ];
 
   for (const [value, expected] of cases) {
@@ -150,7 +181,10 @@ test("parseWeeklyBetAmount rejects empty, invalid, zero, and negative input", ()
     "-1",
     "-100",
     "Infinity",
+    "-Infinity",
     "NaN",
+    "null",
+    "undefined",
   ];
 
   for (const value of cases) {
@@ -171,6 +205,10 @@ test("sanitizeWeeklyBetAmountInput keeps only digits and one decimal point", () 
     ["-42", "42"],
     [" 9 8 7 ", "987"],
     ["$0.00/week", "0.00"],
+    ["1e3", "13"],
+    ["$1,2,3,4", "1234"],
+    ["abc.12def.34ghi", ".1234"],
+    ["000.500", "000.500"],
   ];
 
   for (const [value, expected] of cases) {

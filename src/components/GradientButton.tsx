@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   label: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 16,
+    fontSize: 14,
     textAlign: "center",
   },
 });

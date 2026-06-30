@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
   currencyPrefix: {
     ...text.default,
     color: colors.foregroundMuted,
-    fontSize: 16,
+    fontSize: 22,
     left: 18,
     position: "absolute",
   },
   input: {
     ...text.default,
     color: colors.foreground,
-    fontSize: 18,
+    fontSize: 16,
     paddingHorizontal: 34,
     paddingVertical: 0,
     textAlign: "center",

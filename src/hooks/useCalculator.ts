@@ -16,6 +16,13 @@ export type BetTypeOptionViewData = {
   rateLabel: string;
 };
 
+export type CashbackRulesViewData = {
+  currency: string;
+  monthlyCapLabel: string;
+  programName: string;
+  tiers: BetTypeOptionViewData[];
+};
+
 export type CalculatorStep = "betType" | "weeklyAmount";
 
 export function useCalculator() {
@@ -97,6 +104,22 @@ export function useCalculator() {
     return selectedBetType.cashbackRate < highestCashbackRate;
   }, [cashbackProgram, projectionAmountLabel, selectedBetType]);
 
+  const rulesTable = useMemo<CashbackRulesViewData | null>(() => {
+    if (!cashbackProgram) {
+      return null;
+    }
+
+    return {
+      currency: cashbackProgram.currency,
+      monthlyCapLabel: formatCurrency(
+        cashbackProgram.maxMonthlyCashbackCap,
+        cashbackProgram.currency,
+      ),
+      programName: cashbackProgram.programName,
+      tiers: betTypeOptions,
+    };
+  }, [betTypeOptions, cashbackProgram]);
+
   function selectBetType(betTypeId: string) {
     const nextBetType = cashbackProgram?.tiers.find(
       (betType) => betType.id === betTypeId,
@@ -147,6 +170,7 @@ export function useCalculator() {
       ? "you could earn more if changed your bet type"
       : null,
     resetCalculator,
+    rulesTable,
     selectBetType,
     selectedBetTypeId: selectedBetType?.id ?? null,
     selectedBetTypeLabel:
